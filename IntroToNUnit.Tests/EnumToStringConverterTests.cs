@@ -13,44 +13,17 @@ namespace IntroToNUnit.Tests
     [TestFixture]
     public class EnumToStringConverterTests
     {
-        [Test]
-        public void CanConvertEnumIntoMultipleWords()
+        [TestCase(TestTypes.none, "None")]
+        [TestCase(TestTypes.Testing, "Testing")]
+        [TestCase(TestTypes.UnitTesting, "Unit Testing")]
+        [TestCase(TestTypes.integrationTesting, "Integration Testing")]
+        public void CanConvertEnumIntoFriendlyString(TestTypes value, string expected)
         {
             // Arrange/Act
-            var actual = TestTypes.UnitTesting.ToFriendlyString();
+            var actual = value.ToFriendlyString();
 
             // Assert
-            Assert.That(actual, Is.Not.Null.And.EqualTo("Unit Testing"));
-        }
-
-        [Test]
-        public void CanConvertEnumIntoMultipleWordsWithFirstWordStartingWithLowerCase()
-        {
-            // Arrange/Act
-            var actual = TestTypes.integrationTesting.ToFriendlyString();
-
-            // Assert
-            Assert.That(actual, Is.Not.Null.And.EqualTo("integration Testing"));
-        }
-
-        [Test]
-        public void CanConvertEnumSingleWord()
-        {
-            // Arrange/Act
-            var actual = TestTypes.Testing.ToFriendlyString();
-
-            // Assert
-            Assert.That(actual, Is.Not.Null.And.EqualTo("Testing"));
-        }
-
-        [Test]
-        public void CanConvertEnumSingleLowercaseWord()
-        {
-            // Arrange/Act
-            var actual = TestTypes.none.ToFriendlyString();
-
-            // Assert
-            Assert.That(actual, Is.Not.Null.And.EqualTo("none"));
+            Assert.That(actual, Is.Not.Null.And.EqualTo(expected));
         }
     }
 }
