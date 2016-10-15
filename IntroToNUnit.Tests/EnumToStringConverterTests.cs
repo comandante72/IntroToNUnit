@@ -4,10 +4,10 @@ namespace IntroToNUnit.Tests
 {
     public enum TestTypes
     {
-        None,
+        none = 0,
+        Testing,
         UnitTesting,
-        IntegrationTesting,
-        FlyByTheSeatOfYourPantsTesting
+        integrationTesting
     }
 
     [TestFixture]
@@ -21,9 +21,36 @@ namespace IntroToNUnit.Tests
 
             // Assert
             Assert.That(actual, Is.Not.Null.And.EqualTo("Unit Testing"));
+        }
 
-            Assert.NotNull(actual);
-            Assert.AreEqual("Unit Testing", actual);
+        [Test]
+        public void CanConvertEnumIntoMultipleWordsWithFirstWordStartingWithLowerCase()
+        {
+            // Arrange/Act
+            var actual = TestTypes.integrationTesting.ToFriendlyString();
+
+            // Assert
+            Assert.That(actual, Is.Not.Null.And.EqualTo("integration Testing"));
+        }
+
+        [Test]
+        public void CanConvertEnumSingleWord()
+        {
+            // Arrange/Act
+            var actual = TestTypes.Testing.ToFriendlyString();
+
+            // Assert
+            Assert.That(actual, Is.Not.Null.And.EqualTo("Testing"));
+        }
+
+        [Test]
+        public void CanConvertEnumSingleLowercaseWord()
+        {
+            // Arrange/Act
+            var actual = TestTypes.none.ToFriendlyString();
+
+            // Assert
+            Assert.That(actual, Is.Not.Null.And.EqualTo("none"));
         }
     }
 }
