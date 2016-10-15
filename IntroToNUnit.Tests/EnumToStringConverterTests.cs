@@ -15,6 +15,7 @@ namespace IntroToNUnit.Tests
     [TestFixture]
     public class EnumToStringConverterTests
     {
+        [TestCase((TestTypes)10, "")]
         [TestCase(TestTypes.a, "A")]
         [TestCase(TestTypes.B, "B")]
         [TestCase(TestTypes.none, "None")]
