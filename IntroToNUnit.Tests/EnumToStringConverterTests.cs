@@ -30,5 +30,17 @@ namespace IntroToNUnit.Tests
             // Assert
             Assert.That(actual, Is.Not.Null.And.EqualTo(expected));
         }
+
+        [TestCase((TestTypes)10, ExpectedResult = "")]
+        [TestCase(TestTypes.a, ExpectedResult = "A")]
+        [TestCase(TestTypes.B, ExpectedResult = "B")]
+        [TestCase(TestTypes.none, ExpectedResult = "None")]
+        [TestCase(TestTypes.Testing, ExpectedResult = "Testing")]
+        [TestCase(TestTypes.UnitTesting, ExpectedResult = "Unit Testing")]
+        [TestCase(TestTypes.integrationTesting, ExpectedResult = "Integration Testing")]
+        public string CanConvertEnumIntoFriendlyString(TestTypes value)
+        {
+            return value.ToFriendlyString();
+        }
     }
 }
